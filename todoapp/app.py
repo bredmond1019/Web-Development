@@ -16,13 +16,46 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(), nullable=False)
     completed = db.Column (db.Boolean, nullable=False)
+    list_id = db.Column(db.Integer, db.ForeignKey('todolists.id'), nullable = False)
 
     def __repr__(self):
         return f'<Todo {self.id} {self.description}>'
 
 
-# db.create_all()
 
+class TodoList(db.Model):
+    __tablename__ = 'todolists'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(), nullable=False)
+    todos = db.relationship('Todo', backref='list', lazy=True)
+
+"""
+NOTE: I initially made a migration after creating this class and we had an error. 
+The error was that the values already in the list now contain null values
+under the column "list_id". 
+This goes against the NO NULL constraint that we set.
+
+Therefore we should modify the migrations file before we upgrade. 
+We can change: op.add_column('todos', sa.Column('list_id', sa.Integer(), nullable=True))
+so nullable is True (for now) instead of False. Until we can update all the existing records.
+
+Also, set nullable = True for now in the Todo class
+
+Then we will run another migration once they are all updated or edit them in psql. 
+
+In PSQL we can create a list called "Uncategorized" and add all of our todo items to that list
+
+SQL Commands:
+    insert into todolists (name) values ('Uncategorized');
+    UPDATE todos SET list_id = 1 WHERE list_id IS NULL;
+
+
+Now all of the todo items have a list_id. So we can set Todo's list_id of nullable=True
+back to False
+Save the file. Run 'flask db migrate' again. Then 'flask db upgrade'. 
+
+Now we are good!
+"""
 
 
 @app.route('/todos/create', methods=['POST'])
