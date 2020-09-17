@@ -15,7 +15,7 @@ class Todo(db.Model):
     __tablename__ = 'todos'
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(), nullable=False)
-    completed = db.Column (db.Boolean, nullable=False)
+    completed = db.Column (db.Boolean, nullable=False, default = False)
     list_id = db.Column(db.Integer, db.ForeignKey('todolists.id'), nullable = False)
 
     def __repr__(self):
@@ -42,7 +42,6 @@ so nullable is True (for now) instead of False. Until we can update all the exis
 Also, set nullable = True for now in the Todo class
 
 Then we will run another migration once they are all updated or edit them in psql. 
-
 In PSQL we can create a list called "Uncategorized" and add all of our todo items to that list
 
 SQL Commands:
@@ -107,7 +106,14 @@ def delete_todo(todo_id):
     return jsonify({ 'success' : True})
 
 
+@app.route('/lists/<list_id>')
+def get_list_todos(list_id):
+    return render_template('index.html', 
+    lists = TodoList.query.all(),
+    active_list = TodoList.query.get(list_id),
+    todos=Todo.query.filter_by(list_id=list_id).order_by('id').all())
+
+
 @app.route('/')
 def index():
-    return render_template('index.html', data=Todo.query.order_by('id').all())
-
+    return redirect(url_for('get_list_todos', list_id=1))
