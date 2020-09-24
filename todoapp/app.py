@@ -5,7 +5,8 @@ from flask_migrate import Migrate
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://brandon:flask@localhost:5432/todoapp'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://brandon:flask@localhost:5432/todoapp'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bredmond1019:flask@localhost:5432/todoapp'
 
 db = SQLAlchemy(app)
 
@@ -15,7 +16,7 @@ class Todo(db.Model):
     __tablename__ = 'todos'
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(), nullable=False)
-    completed = db.Column (db.Boolean, nullable=False, default = False)
+    completed = db.Column (db.Boolean, nullable=True, default = False)
     list_id = db.Column(db.Integer, db.ForeignKey('todolists.id'), nullable = False)
 
     def __repr__(self):
@@ -26,7 +27,7 @@ class Todo(db.Model):
 class TodoList(db.Model):
     __tablename__ = 'todolists'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(), nullable=False)
+    name = db.Column(db.String(), nullable=True)
     todos = db.relationship('Todo', backref='list', lazy=True)
 
 """
@@ -72,7 +73,7 @@ def create():
     except:
         error = True
         db.session.rollback()
-        print(sys.exec_info())
+        print(sys.exec_info)
     finally:
         db.session.close()
     if not error:
@@ -112,6 +113,26 @@ def get_list_todos(list_id):
     lists = TodoList.query.all(),
     active_list = TodoList.query.get(list_id),
     todos=Todo.query.filter_by(list_id=list_id).order_by('id').all())
+
+@app.route('/list/create', methods=['POST'])
+def list_create():
+    error = False
+    body = {}
+    try:
+        name = request.get_json()['name']
+        lst = TodoList(name = name)
+        db.session.add(lst)
+        db.session.commit()
+        body['name'] = lst.name
+        body['id'] = lst.id
+    except:
+        error = True
+        db.session.rollback()
+        # print(sys.exec_info)
+    finally:
+        db.session.close()
+    if not error:
+        return jsonify(body)
 
 
 @app.route('/')
