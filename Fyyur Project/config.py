@@ -10,4 +10,5 @@ DEBUG = True
 
 
 # TODO IMPLEMENT DATABASE URL
-SQLALCHEMY_DATABASE_URI = 'postgresql://bredmond1019:flask@localhost:5432/fyyur'
+# SQLALCHEMY_DATABASE_URI = 'postgresql://bredmond1019:flask@localhost:5432/fyyur'
+SQLALCHEMY_DATABASE_URI = 'postgresql://brandon:flask@localhost:5432/fyyur'
