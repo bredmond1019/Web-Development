@@ -1,8 +1,8 @@
-"""Initial Migration
+"""empty message
 
-Revision ID: 26042ea70488
+Revision ID: 9e638077fe95
 Revises: 
-Create Date: 2020-09-29 12:09:25.620496
+Create Date: 2020-10-01 16:16:20.803149
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '26042ea70488'
+revision = '9e638077fe95'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,10 +25,11 @@ def upgrade():
     sa.Column('state', sa.String(length=120), nullable=True),
     sa.Column('phone', sa.String(length=120), nullable=True),
     sa.Column('image_link', sa.String(length=500), nullable=True),
-    sa.Column('facebook_link', sa.String(length=120), nullable=True),
+    sa.Column('genres', sa.String(length=120), nullable=True),
     sa.Column('seeking_venue', sa.Boolean(), nullable=False),
     sa.Column('seeking_description', sa.String(length=120), nullable=True),
-    sa.Column('genres', sa.String(length=120), nullable=True),
+    sa.Column('website', sa.String(length=120), nullable=True),
+    sa.Column('facebook_link', sa.String(length=120), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('venue',
