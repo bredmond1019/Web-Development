@@ -55,3 +55,9 @@ h3 {
 h3 > span.orange {
   color: #FF9C44;
 }
+
+.divider{
+  width:15px;
+  height:auto;
+  display:inline-block;
+}

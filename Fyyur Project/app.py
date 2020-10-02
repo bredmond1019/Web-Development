@@ -268,7 +268,6 @@ def search_artists():
 @app.route('/artists/<int:artist_id>')
 def show_artist(artist_id):
   # shows the venue page with the given venue_id
-  # TODO: replace with real venue data from the venues table, using venue_id
   now = datetime.utcnow()
   artist = Artist.query.get(artist_id)
   data = artist.__dict__
@@ -318,7 +317,7 @@ def edit_artist_submission(artist_id):
       if key == 'genres':
         setattr(artist, key, request.form.getlist(key))
       elif key == 'seeking_venue':
-        setattr(artist, key, True if 'seeking_talent' in request.form else False)  
+        setattr(artist, key, True if 'seeking_venue' in request.form else False)  
       else:
         setattr(artist, key, request.form[key])
     db.session.commit()    
@@ -333,28 +332,29 @@ def edit_artist_submission(artist_id):
 
 @app.route('/venues/<int:venue_id>/edit', methods=['GET'])
 def edit_venue(venue_id):
-  form = VenueForm()
-  venue={
-    "id": 1,
-    "name": "The Musical Hop",
-    "genres": ["Jazz", "Reggae", "Swing", "Classical", "Folk"],
-    "address": "1015 Folsom Street",
-    "city": "San Francisco",
-    "state": "CA",
-    "phone": "123-123-1234",
-    "website": "https://www.themusicalhop.com",
-    "facebook_link": "https://www.facebook.com/TheMusicalHop",
-    "seeking_talent": True,
-    "seeking_description": "We are on the lookout for a local artist to play every two weeks. Please call us.",
-    "image_link": "https://images.unsplash.com/photo-1543900694-133f37abaaa5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"
-  }
-  # TODO: populate form with values from venue with ID <venue_id>
+  venue = Venue.query.get(venue_id)
+  form = VenueForm(obj = venue)
   return render_template('forms/edit_venue.html', form=form, venue=venue)
 
 @app.route('/venues/<int:venue_id>/edit', methods=['POST'])
 def edit_venue_submission(venue_id):
-  # TODO: take values from the form submitted, and update existing
-  # venue record with ID <venue_id> using the new attributes
+  venue = Venue.query.get(venue_id)
+  try:  
+    for key in request.form:
+      if key == 'genres':
+        setattr(venue, key, request.form.getlist(key))
+      elif key == 'seeking_talent':
+        setattr(venue, key, True if 'seeking_talent' in request.form else False)  
+      else:
+        setattr(venue, key, request.form[key])
+    db.session.commit()    
+    flash(f'{venue.name} was successfully update!')
+  except SQLAlchemyError as e:
+    print(e)
+    flash('There was an error.')
+    db.session.rollback()
+  finally:
+    db.session.close()
   return redirect(url_for('show_venue', venue_id=venue_id))
 
 #  Create Artist
@@ -401,8 +401,6 @@ def create_artist_submission():
 @app.route('/shows')
 def shows():
   # displays list of shows at /shows
-  # TODO: replace with real venues data.
-  #       num_shows should be aggregated based on number of upcoming shows per venue.
   shows = Show.query.all()
   data = [{
     'venue_id' : show.venue_id,
@@ -445,6 +443,7 @@ def create_show_submission():
 
 @app.errorhandler(404)
 def not_found_error(error):
+    print(error)
     return render_template('errors/404.html'), 404
 
 @app.errorhandler(500)
