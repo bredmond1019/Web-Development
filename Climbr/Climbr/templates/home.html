@@ -5,43 +5,94 @@
 {% block content %}
 
 
-<img class = bg-header src="static/img/header.jpeg" alt="https://www.thecrag.com/photo/2254076325">
+<!-- <img class = bg-header src="static/img/header.jpeg" alt="https://www.thecrag.com/photo/2254076325"> -->
+<div class='sign-up-container' id='signup' style="background-image: url({{ url_for('static', filename='img/mountaineering.png') }})">
+    <div class='row justify-content-md-center'>
+        <h1 class="welcome" style="color: #637081;">Welcome to Climbr</h1>
+    </div>
+    
+    <div class='row justify-content-md-center'>
+        <div class="col-5">
+        </div>
 
-<div class='bg-body' style="background-image: url({{ url_for('static', filename='img/rock-climber.jpg') }});" >
-    
-    <!-- <img src="static/img/rock-climber.jpg" id='bg-body'> -->
-    <div class='container'>
-        <h1 class="welcome">Welcome to Climbr</h1>
-    
-        
-    
-    
-    
-        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Obcaecati suscipit blanditiis nihil cumque 
-            ducimus necessitatibus aperiam vel quisquam totam 
-            sint tenetur perferendis numquam accusamus, optio amet dicta 
-            possimus ut tempore.
-        </p>
-    
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Labore, dolorem! Asperiores facilis quasi laboriosam laborum, 
-            error esse qui soluta accusantium, illo modi debitis facere expedita 
-            omnis cumque mollitia culpa. Qui.
-        </p>
-    
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Laborum officia deleniti commodi. Ea id perspiciatis accusamus? 
-            Eius eveniet quis non voluptatem quaerat ducimus esse, repudiandae, 
-            obcaecati, labore iure laudantium cumque.
-        </p>
-    </img>
-    </img>
+        <div class="col-4">
+            <div class='container intro-container'>
+
+                <p class ='intro' id='intro-text'>A Social Network to get Outdoors.
+                </p>
+            
+                <p class ='intro' id='intro-text' >Make new friends or connect with old ones while you explore a new crag or hit the gym.</p>
+
+                <p class ='intro' id='intro-text'>Create an Account to start Climbing!</p>
+
+                <button id='sign-up-btn' type="button" class="btn btn-primary intro">Sign Up</button>
+                
+
+            </div>
+        </div>
+    </div>
+      
     </div>
 </div>
 
 
 
+
+<div class='about-container' id='about'  >
+    <div class="row">
+        
+
+        <div class="col-8">
+            
+            <div class='container about-us-container'>
+                
+
+                <h1 class='welcome-2'> About</h1>
+                <p class="about">This is what we are about...</p>
+                
+                <p class="about">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                    Optio voluptate modi aliquam dicta soluta deleniti nemo, 
+                    dolore nobis sit, tenetur reprehenderit sequi delectus accusamus 
+                    placeat a at! Ab, consectetur veritatis.</p>
+                
+                <p class="about">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                    Animi repudiandae aspernatur veniam obcaecati odit ipsam beatae aperiam, 
+                    vero.</p>
+        
+            </div>
+        </div>
+
+        <div class="col-4">
+            <img src="static/img/logo2.jpeg" id='logo'>
+        </div>
+    </div>
+</div>
+
+
+
+<div class='find-partner-container' id='find-partner' style="background-image: url({{ url_for('static', filename='img/rock-climber.jpg') }})">
+    <div class="row">
+
+        
+
+        <div class='col-5'></div>
+        <div class='col-6'>
+            <div class='container partner-container'>
+                <h1 class='welcome-3'> Find a Partner</h1>
+                <div class='partner-text'>
+                    <p class='partner'>Find a Partner for the Gym or Head to Your Local Crag.</p>
+
+                    <button id='find-partner' type="button" class="btn btn-primary btn-partner partner">Find a Partner</button>
+
+                    <p class="partner"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
     
 {% endblock content %}
-

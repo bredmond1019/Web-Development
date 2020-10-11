@@ -1,38 +1,157 @@
-.bg-header {
+
+
+/* NavBar */
+
+
+.navbar{
+    font-family: 'Anton', sans-serif;
+    font-size: 1.25vw;
+
+    
+}
+
+.navbar-brand {
+    font-size: 2vw
+}
+
+
+
+/* Sign-Up */
+
+.sign-up-container {
     width: 100%;
-    z-index: 0;
-    position: relative;
-    
-    left: 0;
-}
-
-.welcome {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    padding-left: 300px;
-    padding-top: 25px;
-    padding-bottom: 30px;
-    color: black;
-    
-}
-
-
-
-p {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    text-align: right;
-    padding-left: 60%;
-    color: black;
-    font-size: 1.25em;
-    opacity: 1.0;
-    
-    
-    
-}
-
-.bg-body {
-    background-size: 100%;
+    background-size: 100vw;
     background-repeat: no-repeat;
-    opacity: 0.5;
+    opacity: 0.95;
+
 }
+
+.intro-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: right;
+}
+
+
+
+
+ .welcome {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 5vw;
+    margin-left: 5em;
+    color: white;
+    
+    
+}
+
+
+
+#intro-text {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    text-align: center;
+    font-size: 2vw;
+    margin-top: 2em;  
+    margin-bottom: 2em;
+    color: white;
+    
+}
+
+#sign-up-btn {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 2vw;
+    margin-top: 0;
+    margin-bottom: 2em;
+    
+    
+
+
+}
+
+
+/* About */
+
+.about-container{
+    width: 100%;
+    background-color: black;
+    position: relative;
+}
+
+.about-us-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    
+}
+
+.welcome-2 {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 5vw;
+    margin-top: 1em;
+    color: white;
+    text-align: center;
+    margin-bottom: 1em;
+}
+.about {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    text-align: center;
+    font-size: 2vw;
+    margin-top: 2em;  
+    margin-bottom: 2em;
+    color: white;
+}
+
+#logo {
+    border-radius: 50%;
+    margin-top: 4em;
+}
+
+/* Find a Partner */
+
+
+.find-partner-container{
+    width: 100%;
+    background-size: 100vw;
+    background-repeat: no-repeat;
+    opacity: 0.95;
+    background-color: black;
+}
+
+.welcome-3 {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 5vw;
+    margin-bottom: 1em;
+    text-align: center;
+    color:white;
+    margin-top: 4em;
+}
+.partner {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    text-align: center;
+    font-size: 2vw;
+}
+
+.partner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    
+}
+
+.partner-text {
+    margin-top: 2.5em;
+    margin-bottom: 2em;
+    color: white;
+}
+
+.btn-partner{
+    margin-top: 2em;
+    margin-left: 7em;
+    margin-right: 6em;
+    margin-bottom: 2em;
+}
+
+
+
+

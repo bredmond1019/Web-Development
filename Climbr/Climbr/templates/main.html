@@ -12,23 +12,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/climbr.css') }}">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fira+Sans+Condensed:wght@600&family=Teko:wght@500&display=swap" rel="stylesheet">
 
 
 </head>
 <body>
+
+  
     
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">Climbr</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;" >
+        <a class="navbar-brand text-primary" href="#">CLIMBR</a>
+        <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" ></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-link" href="#">Find Partner</a>
-            <a class="nav-link" href="#">About</a>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Sign-Up</a>
+            <a class="nav-link active text-primary" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link text-primary" href="#">Find Partner</a>
+            <a class="nav-link text-primary" href="#">About</a>
+            <a class="nav-link disabled text-primary" href="#" tabindex="-1" aria-disabled="true">Sign-Up</a>
           </div>
         </div>
       </nav>
@@ -41,7 +43,20 @@
         {% endblock content %}
           
 
-
+        <<nav class="navbar navbar-expand-lg navbar-dark fixed-bottom" style="background-color: black;">
+          <a class="navbar-brand text-primary" href="#">CLIMBR</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active text-primary" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-primary" href="#">Find Partner</a>
+              <a class="nav-link text-primary" href="#">About</a>
+              <a class="nav-link disabled text-primary" href="#" tabindex="-1" aria-disabled="true">Sign-Up</a>
+            </div>
+          </div>
+        </nav>
 
 
 
