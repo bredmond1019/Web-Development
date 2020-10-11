@@ -1,0 +1,38 @@
+.bg-header {
+    width: 100%;
+    z-index: 0;
+    position: relative;
+    
+    left: 0;
+}
+
+.welcome {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    padding-left: 300px;
+    padding-top: 25px;
+    padding-bottom: 30px;
+    color: black;
+    
+}
+
+
+
+p {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-align: right;
+    padding-left: 60%;
+    color: black;
+    font-size: 1.25em;
+    opacity: 1.0;
+    
+    
+    
+}
+
+.bg-body {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
