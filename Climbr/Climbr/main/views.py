@@ -1,7 +1,6 @@
 # from Climbr import app
 from flask import Flask, render_template, request, Response, flash, redirect, url_for, jsonify
 from . import main
-# from .forms import UserForm
 from .. import db
 from ..models import User
 
