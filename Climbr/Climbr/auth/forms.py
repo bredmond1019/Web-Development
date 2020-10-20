@@ -92,7 +92,7 @@ class SignUpForm(FlaskForm):
     )
     zip_code = IntegerField(validators=[DataRequired()])
     
-    email = StringField('email', [
+    email = StringField('Email', [
         Email(message = 'Not a valid email address.'), 
         DataRequired()
     ])
@@ -123,7 +123,7 @@ class SignUpForm(FlaskForm):
         ])
     
 
-    recaptcha = RecaptchaField()
+    # recaptcha = RecaptchaField()
     sumbit = SubmitField("Submit")
 
 

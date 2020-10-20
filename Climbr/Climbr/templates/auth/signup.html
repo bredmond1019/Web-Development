@@ -3,23 +3,22 @@
 
 
 {% block title %}
-    Climbr - Login
+    Climbr - Sign Up
 {% endblock title %}
     
 
 {% block content %}
     <div class='container jumbotron' style="justify-content: center;">
         <div class='page-header'>
-            <h1>Login</h1>
+            <h1>Sign Up</h1>
         </div>
         <div class='col-md-4'>
             {{ wtf.quick_form(form) }}
         </div>
         <p>
-            New User?
-            <a href="{{ url_for('auth.signup') }}">Click here to Sign Up</a>
+            Already have an account?
+            <a href="{{ url_for('auth.login') }}">Click here to Log In</a>
         </p>
     </div>
     
 {% endblock content %}
-    

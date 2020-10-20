@@ -12,6 +12,7 @@ class Config:
     CLIMBR_MAIL_SENDER = 'Climbr Admin <bredmond1019@gmail.com>'
     CLIMBR_ADMIN = os.environ.get('CLIMBR_ADMIN')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    RECAPTCHA_PRIVATE_KEY = os.environ.get('RC_SECRET_KEY')
 
     @staticmethod
     def init_app(app):
