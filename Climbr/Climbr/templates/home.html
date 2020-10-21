@@ -23,10 +23,16 @@
             
                 <p class ='intro' id='intro-text' >Make new friends or connect with old ones while you explore a new crag or hit the gym.</p>
 
-                <p class ='intro' id='intro-text'>Create an Account to start Climbing!</p>
+                {% if current_user.is_authenticated %}
+                    <p class ='intro' id='intro-text'>Go to your Account to start Climbing!</p>
 
-                <button id='sign-up-btn' type="button" class="btn btn-primary intro">Sign Up</button>
-                
+                    <a id='sign-up-btn' href="{{ url_for('auth.signup') }}" class="btn btn-primary intro">My Account</a>
+
+                {% else %}
+                    <p class ='intro' id='intro-text'>Create an Account to start Climbing!</p>
+
+                    <a id='sign-up-btn' href="{{ url_for('auth.signup') }}" class="btn btn-primary intro">Sign Up</a>
+                {% endif %}
 
             </div>
         </div>
@@ -48,16 +54,15 @@
                 
 
                 <h1 class='welcome-2'> About</h1>
-                <p class="about">This is what we are about...</p>
+                <p class="about">Bringin Climbers and Outdoor Enthusiasts Together...</p>
                 
-                <p class="about">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                    Optio voluptate modi aliquam dicta soluta deleniti nemo, 
-                    dolore nobis sit, tenetur reprehenderit sequi delectus accusamus 
-                    placeat a at! Ab, consectetur veritatis.</p>
+                <p class="about">Climbr is an app where you can connect with other climbers that are of
+                                similar abilities levels or similar interests in getting outdoors. Whether
+                                you like to lead sport routes or place some pro on a trad route in the Gunks,
+                                you can find someone who is looking for the same.
+                </p>
                 
-                <p class="about">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Animi repudiandae aspernatur veniam obcaecati odit ipsam beatae aperiam, 
-                    vero.</p>
+                <p class="about">Check out our Find a Partner section below to make some new friends!</p>
         
             </div>
         </div>

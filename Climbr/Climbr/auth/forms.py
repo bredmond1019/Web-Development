@@ -126,6 +126,9 @@ class SignUpForm(FlaskForm):
     # recaptcha = RecaptchaField()
     sumbit = SubmitField("Submit")
 
+    def validate_email(self, field):
+        if User.query.filter_by(email=field.data).first()
+            raise ValidationError("Email already registered")
 
 
 
