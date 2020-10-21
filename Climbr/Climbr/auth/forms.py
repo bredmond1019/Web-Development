@@ -14,6 +14,8 @@ from wtforms.validators import (DataRequired,
                             Length, 
                             URL)
 
+from ..models import User
+
 class SignUpForm(FlaskForm):
     first_name = StringField('First Name', [
         DataRequired(),
@@ -127,7 +129,7 @@ class SignUpForm(FlaskForm):
     sumbit = SubmitField("Submit")
 
     def validate_email(self, field):
-        if User.query.filter_by(email=field.data).first()
+        if User.query.filter_by(email=field.data).first():
             raise ValidationError("Email already registered")
 
 

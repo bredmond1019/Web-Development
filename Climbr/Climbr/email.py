@@ -14,7 +14,7 @@ def send_async_email(app, msg):
 def send_email(to, subject, template, **kwargs):
     app = current_app._get_current_object()
     msg = Message(f"{app.config['CLIMBR_MAIL_SUBJECT_PREFIX']} {subject}", 
-                  sender = app.config['CLIMBR_MAIL_SENDER'], recipients = [to])
+                  sender = app.config['MAIL_USERNAME'], recipients = [to])
     msg.body = render_template(f'{template}.txt', **kwargs)
     msg.html = render_template(f'{template}.html', **kwargs)
     thr = Thread(target=send_async_email, args=[app, msg])
