@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Climbr - {{ user.username }}
+{% endblock title %}
+    
+
+{% block content %}
+<div class="container">
+
+    <div class="page-header jumbotron">
+        <h1>Hello, {{ user.first_name }}!</h1>
+        <p>Here you can view and edit your information. </p>
+    </div>
+
+</div>
+<div class="container">
+    <h4>Member Since {{ moment(user.member_since).format('MMMM Do, YYYY') }}</h4>
+    
+    <h3>Personal Information </h3>
+    
+    {% if user == current_user %}
+    <a class='btn btn-primary' href="{{ url_for('.edit_profile', username=user.username) }}">Edit</a> 
+    {% endif %}
+    
+    {% if current_user.is_administrator()  %}
+    <a class='btn btn-danger' href="{{ url_for('.edit_profile_admin', id=user.id) }}">Edit</a> 
+    {% endif %}
+    
+    <div class="row">
+        
+        <div class="col-md">
+            <p><b>Name:</b> {{ user.last_name }}, {{user.first_name }}</p>
+            <p><b>Username:</b> {{user.username}} </p>
+            <p><b>Age:</b> {{ user.age }}</p>
+            <p><b>About Me:</b></p>
+            {% if user.about %}
+            <p>{{ user.about }}</p>
+            {% else %}
+            <p>Edit your profile to add some information about yourself!</p>
+            {% endif %}
+        </div>
+        {% if user == current_user %}
+        <div class="col-md">
+            <p><b>Address:</b> {{ user.address }}</p>
+            <p><b>City: </b>{{ user.city }}   <b>State: </b>{{ user.state }}</p>
+            <p><b>Zip Code:</b> {{ user.zip_code }}</p>
+        </div>
+        {% endif %}
+    </div>
+    
+    <h3>Climbing Info</h3>
+    
+    {% if user == current_user %}
+    <a class='btn btn-primary' href="{{ url_for('.edit_climbing', username=user.username) }}">Edit</a>
+    {% endif %}
+    
+    {% if current_user.is_administrator()  %}
+    <a class='btn btn-danger' href="{{ url_for('.edit_profile_admin', id=user.id) }}">Edit</a> 
+    {% endif %}
+    
+    <div class="row">
+        <div class="col-sm">
+            <p><b>Home Gym: </b>{{user.climbing_gym }}</p>
+            <p><b>Preferred Style of Climbing: </b>{{ user.climbing_preference }}</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    

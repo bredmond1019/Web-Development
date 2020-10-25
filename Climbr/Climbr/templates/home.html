@@ -26,7 +26,7 @@
                 {% if current_user.is_authenticated %}
                     <p class ='intro' id='intro-text'>Go to your Account to start Climbing!</p>
 
-                    <a id='sign-up-btn' href="{{ url_for('auth.signup') }}" class="btn btn-primary intro">My Account</a>
+                    <a id='sign-up-btn' href="{{ url_for('main.user', username=current_user.username) }}" class="btn btn-primary intro">My Account</a>
 
                 {% else %}
                     <p class ='intro' id='intro-text'>Create an Account to start Climbing!</p>

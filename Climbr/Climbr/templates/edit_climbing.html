@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}
+    Climbr - Edit Climbing
+{% endblock title %}
+    
+
+{% block content %}
+    <div class='container jumbotron' style="justify-content: center;">
+        <div class='page-header'>
+            <h1>Edit Climbing</h1>
+        </div>
+        <div class='col-md-4'>
+            {{ wtf.quick_form(form) }}
+        </div>
+        
+    </div>
+    
+{% endblock content %}

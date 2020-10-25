@@ -29,8 +29,8 @@ def signup():
                         climbing_preference = form.climbing_preference.data,
                         
                         email = form.email.data,
-                        password = form.password.data, 
-                        role_id = 2)
+                        username = (form.email.data).split('@')[0],
+                        password = form.password.data)
             db.session.add(user)
             db.session.commit()
             token = user.generate_confirmation_token()
@@ -40,7 +40,7 @@ def signup():
         except SQLAlchemyError as e:
             print(str(e))
             flash('An error occurred.')
-            db.session.rollback
+            db.session.rollback()
             print(request.form)
         finally:
             db.session.close()
@@ -85,11 +85,13 @@ def confirm(token):
 
 @auth.before_app_request
 def before_request():
-    if current_user.is_authenticated \
-            and not current_user.confirmed \
-            and request.blueprint != 'auth' \
-            and request.endpoint != 'static':
-        return redirect(url_for('auth.unconfirmed'))
+    if current_user.is_authenticated:
+        current_user.ping()
+        if not current_user.confirmed \
+                and request.endpoint \
+                and request.blueprint != 'auth' \
+                and request.endpoint != 'static':
+            return redirect(url_for('auth.unconfirmed'))
     
 
 @auth.route('/unconfirmed')

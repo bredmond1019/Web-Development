@@ -15,6 +15,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fira+Sans+Condensed:wght@600&family=Teko:wght@500&display=swap" rel="stylesheet">
     <link rel="icon" href="data:,">
 
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
+
 </head>
 <body>
 
@@ -34,7 +37,9 @@
           <div class='navbar-nav navbar-right'>
             
             {% if current_user.is_authenticated %}
+              <a class="nav-link text-primary" href="{{ url_for('main.user', username=current_user.username) }}">Profile</a>
               <a class="nav-link text-primary" href="{{ url_for('auth.logout') }}">Log Out</a>
+              
             {% else %}
               <a class="nav-link text-primary" href="{{url_for('auth.signup') }}">Sign Up</a>
               <a class="nav-link text-primary" href="{{ url_for('auth.login') }}">Log In</a>
