@@ -38,6 +38,7 @@ class User(UserMixin, db.Model):
     member_since = db.Column(db.DateTime(), default=datetime.now(tz = timezone.utc))
     last_seen = db.Column(db.DateTime(), default=datetime.now(tz = timezone.utc))
     about = db.Column(db.String(300))
+    photo_url = db.Column(db.String(200))
 
     # Role
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))

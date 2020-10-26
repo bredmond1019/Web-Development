@@ -9,8 +9,20 @@
 <div class="container">
 
     <div class="page-header jumbotron">
-        <h1>Hello, {{ user.first_name }}!</h1>
-        <p>Here you can view and edit your information. </p>
+        <div class="row">
+            <div class="col">
+                <h1>Hello, {{ user.first_name }}!</h1>
+                <p>Here you can view and edit your information. </p>
+            </div>
+            <div class="col">
+                {% if user.photo_url %}
+                    <img id='profile-pic' src="{{ url_for('static', filename=photo_url) }}" alt="">
+                {% else %}
+                    <img src="#" alt="">
+                    <a href="{{ url_for('.upload_photo', username=user.username) }}" class="btn btn-primary">Upload Profile Pic</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
 
 </div>

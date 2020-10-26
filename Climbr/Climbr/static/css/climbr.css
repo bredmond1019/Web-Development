@@ -159,3 +159,12 @@
     font-family: 'Fira Sans Condensed', sans-serif;
 }
 
+
+
+/* User Pages */
+
+#profile-pic {
+    border-radius: 50% !important;
+    padding-left: 50px;
+}
+
