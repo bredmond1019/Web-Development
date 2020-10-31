@@ -11,22 +11,32 @@ import os
 from Climbr import photos
 from . import main
 from .. import db
-from ..models import User, Role
-from .forms import EditProfileForm, EditClimbingForm, EditProfileAdminForm, ProfilePicForm
+from ..models import User, Role, Post, Permission
+from .forms import EditProfileForm, EditClimbingForm, EditProfileAdminForm, ProfilePicForm, PostForm
 from ..decorators import admin_required
 
 
-
+'''
+Home Page
+'''
 @main.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('home.html')
 
+
+
+
+
+
+'''
+User's Page
+'''
 @main.route('/user/<username>')
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     app = current_app._get_current_object()
     if user.photo_url:
-        photo_url = f'uploads/{user.photo_url}'
+        photo_url = user.photo_url
     else:
         photo_url = ''
     return render_template('user.html', user=user, photo_url=photo_url)
@@ -43,7 +53,7 @@ def upload_photo(username):
             print(name)
             photos.save(filename, name=f'{name}.')
         try:
-            setattr(user, 'photo_url', f'{name}.jpg')
+            setattr(user, 'photo_url', f'uploads/{name}.jpg')
             db.session.commit()
             flash("Photo successfully uploaded")
         except SQLAlchemyError as e:
@@ -53,19 +63,8 @@ def upload_photo(username):
             db.session.rollback()
         finally:
             db.session.close
-            return  redirect(url_for('main.user', username=user.username))
-    return render_template('upload_photo.html', username=user.username, form=form)
-
-@main.route('/user/<username>/edit-photo', methods=['GET', 'POST'])
-@login_required
-def edit_photo(username):
-    user = User.query.filter_by(username=username).first_or_404()
-    form = ProfilePicForm(obj = user)
-    if form.validate_on_submit():
-        for filename in request.files.getlist('photo'):
-            name = hashlib.md5('admin' + str(time.time())).hexdigest()[:15]
-            photos.save(filename, name=f'{name}.')
-    return redirect(url_for('main.user', username=user.username))
+            return  redirect(url_for('main.user', username=current_user.username))
+    return render_template('upload_photo.html', form=form)
 
 
 
@@ -95,6 +94,7 @@ def edit_profile(username):
 
 
 @main.route('/user/<username>/edit-climbing', methods=['GET', 'POST'])
+@login_required
 def edit_climbing(username):
     user = User.query.filter_by(username=username).first_or_404() 
     form = EditClimbingForm(obj = user)
@@ -144,3 +144,34 @@ def edit_profile_admin(id):
             db.session.close()
         return redirect(url_for('main.user', username=user.username))
     return render_template('edit_profile_admin.html', form=form, user=user)
+
+
+
+
+
+
+
+'''
+Forum
+'''
+@main.route('/forum', methods = ['GET', 'POST'])
+@login_required
+def forum():
+    form = PostForm()
+    if current_user.can(Permission.WRITE) and form.validate_on_submit():
+        try:
+            post = Post(body=form.body.data,
+                        author=current_user._get_current_object())
+            db.session.add(post)
+            db.session.commit()
+            flash("Your post was successfully added!")
+        except SQLAlchemyError as e:
+            print(e)
+            flash("There was an error while attempting to post. Please try again later")
+            db.session.rollback()
+        finally:
+            db.session.close()
+        return redirect(url_for('main.forum'))
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    
+    return render_template('forum.html', form=form, posts=posts)

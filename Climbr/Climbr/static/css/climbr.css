@@ -5,154 +5,173 @@
 
 
 
-.navbar{
-    font-family: 'Anton', sans-serif;
-    font-size: 1.25vw;
+    .navbar{
+        font-family: 'Anton', sans-serif;
+        font-size: 1.25vw;
 
-    
-}
+        
+    }
 
-.navbar-brand {
-    font-size: 2vw
-}
-
-
-
-/* Sign-Up */
-
-.sign-up-container {
-    width: 100%;
-    background-size: 100vw;
-    background-repeat: no-repeat;
-    opacity: 0.95;
-
-}
-
-.intro-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: right;
-}
+    .navbar-brand {
+        font-size: 2vw
+    }
 
 
 
 
- .welcome {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    font-size: 5vw;
-    margin-left: 5em;
-    color: white;
-    
-    
-}
+/* HOME PAGE */
+
+    /* Sign-Up */
+
+    .sign-up-container {
+        width: 100%;
+        background-size: 100vw;
+        background-repeat: no-repeat;
+        opacity: 0.95;
+
+    }
+
+    .intro-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: right;
+        padding-bottom: 25%;
+    }
 
 
 
-#intro-text {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    text-align: center;
-    font-size: 2vw;
-    margin-top: 2em;  
-    margin-bottom: 2em;
-    color: white;
-    
-}
 
-#sign-up-btn {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    font-size: 2vw;
-    margin-top: 0;
-    margin-bottom: 2em;
-    
-    
+    .welcome {
+        font-family: 'Fira Sans Condensed', sans-serif;
+        font-size: 5vw;
+        margin-left: 5em;
+        color: white;
+        
+        
+    }
 
 
-}
+
+    #intro-text {
+        font-family: 'Fira Sans Condensed', sans-serif;
+        text-align: center;
+        font-size: 2vw;
+        margin-top: 2em;  
+        margin-bottom: 2em;
+        color: white;
+        
+    }
+
+    #sign-up-btn {
+        font-family: 'Fira Sans Condensed', sans-serif;
+        font-size: 2vw;
+        margin-top: 0;
+        margin-bottom: 2em;
+        
+        
 
 
-/* About */
-
-.about-container{
-    width: 100%;
-    background-color: black;
-    position: relative;
-}
-
-.about-us-container {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    justify-content: center;
-    
-}
-
-.welcome-2 {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    font-size: 5vw;
-    margin-top: 1em;
-    color: white;
-    text-align: center;
-    margin-bottom: 1em;
-}
-.about {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    text-align: center;
-    font-size: 2vw;
-    margin-top: 2em;  
-    margin-bottom: 2em;
-    color: white;
-}
-
-#logo {
-    border-radius: 50%;
-    margin-top: 4em;
-}
-
-/* Find a Partner */
+    }
 
 
-.find-partner-container{
-    width: 100%;
-    background-size: 100vw;
-    background-repeat: no-repeat;
-    opacity: 0.95;
-    background-color: black;
-}
+    /* About */
 
-.welcome-3 {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    font-size: 5vw;
-    margin-bottom: 1em;
-    text-align: center;
-    color:white;
-    margin-top: 4em;
-}
-.partner {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    text-align: center;
-    font-size: 2vw;
-}
+    .about-container{
+        width: 100%;
+        background-color: black;
+        position: relative;
+    }
 
-.partner-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: right;
-    
-}
+    .about-us-container {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        justify-content: center;
+        padding-bottom: 20%;
+        padding-top: 10%;
+    }
 
-.partner-text {
-    margin-top: 2.5em;
-    margin-bottom: 2em;
-    color: white;
-}
+    .welcome-2 {
+        font-family: 'Fira Sans Condensed', sans-serif;
+        font-size: 5vw;
+        margin-top: 1em;
+        color: white;
+        text-align: center;
+        margin-bottom: 1em;
+    }
+    .about {
+        font-family: 'Fira Sans Condensed', sans-serif;
+        text-align: center;
+        font-size: 2vw;
+        margin-top: 2em;  
+        margin-bottom: 2em;
+        color: white;
+    }
 
-.btn-partner{
-    margin-top: 2em;
-    margin-left: 7em;
-    margin-right: 6em;
-    margin-bottom: 2em;
-}
+    #logo {
+        border-radius: 50%;
+        width: 20vw;
+        height: 15vh;
+        /* margin-top: 4em; */
+    }
+
+    .logo-container {
+        padding-top: 10%;
+    }
+
+    /* Find a Partner */
+
+
+    .find-partner-container{
+        width: 100%;
+        background-size: 100vw;
+        height: 100%;
+        background-repeat: no-repeat;
+        opacity: 0.95;
+        background-color: black;
+    }
+
+    .welcome-3 {
+        font-family: 'Fira Sans Condensed', sans-serif;
+        font-size: 5vw;
+        margin-bottom: 1em;
+        text-align: center;
+        color:white;
+        margin-top: 4em;
+    }
+    .partner {
+        font-family: 'Fira Sans Condensed', sans-serif;
+        text-align: center;
+        font-size: 2vw;
+    }
+
+    .partner-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        padding-bottom: 25%;
+        
+    }
+
+    .partner-text {
+        margin-top: 2.5em;
+        margin-bottom: 2em;
+        color: white;
+    }
+
+    .btn-partner{
+        margin-top: 2em;
+        margin-left: 7em;
+        margin-right: 6em;
+        margin-bottom: 2em;
+    }
+
+
+
+
+
+
 
 
 /* Auth pages */
@@ -163,12 +182,23 @@
 
 
 
+
+
 /* User Pages */
 
 #profile {
     border-radius: 50%;
     width: 200px;
     height: 200px;
+}
+
+
+.profile-pic-container {
+    padding-bottom: 10%;
+}
+
+.profile-pic-upload-btn {
+    padding-left: 2%;
 }
 
 .profile-background-container {
@@ -249,3 +279,50 @@
 .personal-info{
     margin: 40px 0px;
 }
+
+
+
+
+
+
+/* Forum */
+
+.image-header {
+    width: 100vw;
+}
+
+ul.posts {
+    list-style-type: none;
+}
+
+.make-post-container {
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 25%;
+    padding-bottom: 10%;
+}
+
+.post-container {
+    margin-left: 7%;
+    margin-right: 7%;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+}
+
+#icon {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.post-pic-container{
+    padding-left: 25%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.post-info-container {
+
+}
+

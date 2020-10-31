@@ -6,6 +6,7 @@ from . import login_manager
 from flask import current_app
 
 from datetime import datetime, timezone
+import hashlib
 
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -40,6 +41,9 @@ class User(UserMixin, db.Model):
     about = db.Column(db.String(300))
     photo_url = db.Column(db.String(200))
 
+    # Posts
+    posts = db.relationship("Post", backref='author', lazy='dynamic')
+
     # Role
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
@@ -61,6 +65,11 @@ class User(UserMixin, db.Model):
         self.last_seen = datetime.now(tz = timezone.utc)
         db.session.add(self)
         db.session.commit()
+    
+    def gravatar(self, size=100, default='identicon', rating='g'):
+        url = 'https://secure.gravatar.com/avatar'
+        hash = hashlib.md5(self.email.lower().encode('utf-8')).hexdigest()
+        return f'{url}/{hash}?s={size}&d={default}&r={rating}'
 
     @property
     def password(self):
@@ -144,6 +153,15 @@ class Role(db.Model):
             role.default = (role.name == default_role)
             db.session.add(role)
         db.session.commit()
+
+
+class Post(db.Model):
+    __tablename__ = 'posts'
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(1000))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.now(tz = timezone.utc))
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
 
 
 class Permission:
