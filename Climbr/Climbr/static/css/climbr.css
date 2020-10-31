@@ -3,6 +3,8 @@
 /* NavBar */
 
 
+
+
 .navbar{
     font-family: 'Anton', sans-serif;
     font-size: 1.25vw;
@@ -163,8 +165,87 @@
 
 /* User Pages */
 
-#profile-pic {
-    border-radius: 50% !important;
-    padding-left: 50px;
+#profile {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
 }
 
+.profile-background-container {
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    background-size: cover;
+
+
+    
+}
+
+.profile-page-container {
+    background-color: black;
+    opacity: 0.8;
+    padding-left: 0%;
+    
+
+    
+}
+
+.page-background {
+    background-image: linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
+    
+}
+
+.profile-header {
+    margin-left: 15%;
+    margin-top: 15%;
+    margin-right: 5%;
+    margin-bottom: 10%;
+    justify-content: center;
+}
+
+.image-container {
+    margin-left: 5%;
+    margin-top: 15%;
+    margin-right: 5%;
+    margin-bottom: 10%;
+    justify-content: center;
+}
+
+.user-info {
+    margin-left: 10%;
+    margin-right: 10%;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    
+    font-size: 2vw;
+}
+
+.last-div {
+    padding-bottom: 10%;
+    
+}
+
+.user-info-b {
+    font-weight: 600; 
+   font-size: 1.75vw;
+   font-style: bold;
+}
+
+.user-info-p{
+   font-family: 'Fira Sans Condensed', sans-serif;
+   font-weight: 300; 
+   font-size: 1.5vw;
+   
+}
+
+.info-header {
+    font-size: 2.25vw;
+    margin-right: 40px;
+    font-weight: 900;
+}
+
+
+.personal-info{
+    margin: 40px 0px;
+}

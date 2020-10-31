@@ -3,78 +3,110 @@
 {% block title %}
     Climbr - {{ user.username }}
 {% endblock title %}
-    
+
 
 {% block content %}
-<div class="container">
+<!-- style="background-image: url({{ url_for('static', filename='img/yosemite.jpg') }})" -->
+<div class="profile-background-container"  
+style="background-image: url({{ url_for('static', filename='img/moab.jpg') }})">
+    <div class="profile-page-container container">
+        <div class="page-background">
+            <div class="container">
 
-    <div class="page-header jumbotron">
-        <div class="row">
-            <div class="col">
-                <h1>Hello, {{ user.first_name }}!</h1>
-                <p>Here you can view and edit your information. </p>
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="container profile-header">
+                                <h1>Welcome Back, {{ user.first_name }}!</h1>
+                                <p>Member Since {{ moment(user.member_since).format('MMMM Do, YYYY') }}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="image-container">
+                            {% if user.photo_url %}
+                                <img id='profile' class="img-rounded profile-thumbnail" 
+                                src="{{ url_for('static', filename=photo_url) }}" alt="">
+                            {% else %}
+                                <img src="#" alt="">
+                                <a href="{{ url_for('.upload_photo', username=user.username) }}" 
+                                class="btn btn-primary">Upload Profile Pic</a>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
             </div>
-            <div class="col">
-                {% if user.photo_url %}
-                    <img id='profile-pic' src="{{ url_for('static', filename=photo_url) }}" alt="">
-                {% else %}
-                    <img src="#" alt="">
-                    <a href="{{ url_for('.upload_photo', username=user.username) }}" class="btn btn-primary">Upload Profile Pic</a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+            <div class="container user-info">
+                <!-- <h4>Member Since {{ moment(user.member_since).format('MMMM Do, YYYY') }}</h4> -->
+                <div class="personal-info">
+                    <h3><span class='info-header'>Personal Information</span> 
+                    
+                        {% if user == current_user %}
+                        <a class='btn btn-primary' href="{{ url_for('.edit_profile', username=user.username) }}">Edit</a> 
+                        {% endif %}
+                        
+                        {% if current_user.is_administrator()  %}
+                        <a class='btn btn-danger' href="{{ url_for('.edit_profile_admin', id=user.id) }}">Edit</a> 
+                        {% endif %}
+                    </h3>
+                    
+                    <div class="row">
+                        
+                        <div class="col-md">
+                            <p class="user-info-p"><b class="user-info-b" >Name:</b> {{ user.last_name }}, {{user.first_name }}</p>
+                            <p class="user-info-p"><b class="user-info-b" >Username:</b> {{user.username}} </p>
+                            <p class="user-info-p"><b class="user-info-b" >Age:</b> {{ user.age }}</p>
+                            
+                        </div>
+                        {% if user == current_user %}
+                        <div class="col-md">
+                            <p class="user-info-p"><b class="user-info-b" >Address:</b> {{ user.address }}</p>
+                            <p class="user-info-p"><b class="user-info-b" >City: </b>{{ user.city }}   <b class="user-info-b" >State: </b>{{ user.state }}</p>
+                            <p class="user-info-p"><b class="user-info-b" >Zip Code:</b> {{ user.zip_code }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
 
-</div>
-<div class="container">
-    <h4>Member Since {{ moment(user.member_since).format('MMMM Do, YYYY') }}</h4>
-    
-    <h3>Personal Information </h3>
-    
-    {% if user == current_user %}
-    <a class='btn btn-primary' href="{{ url_for('.edit_profile', username=user.username) }}">Edit</a> 
-    {% endif %}
-    
-    {% if current_user.is_administrator()  %}
-    <a class='btn btn-danger' href="{{ url_for('.edit_profile_admin', id=user.id) }}">Edit</a> 
-    {% endif %}
-    
-    <div class="row">
-        
-        <div class="col-md">
-            <p><b>Name:</b> {{ user.last_name }}, {{user.first_name }}</p>
-            <p><b>Username:</b> {{user.username}} </p>
-            <p><b>Age:</b> {{ user.age }}</p>
-            <p><b>About Me:</b></p>
-            {% if user.about %}
-            <p>{{ user.about }}</p>
-            {% else %}
-            <p>Edit your profile to add some information about yourself!</p>
-            {% endif %}
-        </div>
-        {% if user == current_user %}
-        <div class="col-md">
-            <p><b>Address:</b> {{ user.address }}</p>
-            <p><b>City: </b>{{ user.city }}   <b>State: </b>{{ user.state }}</p>
-            <p><b>Zip Code:</b> {{ user.zip_code }}</p>
-        </div>
-        {% endif %}
-    </div>
-    
-    <h3>Climbing Info</h3>
-    
-    {% if user == current_user %}
-    <a class='btn btn-primary' href="{{ url_for('.edit_climbing', username=user.username) }}">Edit</a>
-    {% endif %}
-    
-    {% if current_user.is_administrator()  %}
-    <a class='btn btn-danger' href="{{ url_for('.edit_profile_admin', id=user.id) }}">Edit</a> 
-    {% endif %}
-    
-    <div class="row">
-        <div class="col-sm">
-            <p><b>Home Gym: </b>{{user.climbing_gym }}</p>
-            <p><b>Preferred Style of Climbing: </b>{{ user.climbing_preference }}</p>
+                <div class="personal-info">
+                    <h3 ><span class='info-header'>About Me</span> 
+                        {% if user == current_user %}
+                        <a class='btn btn-primary' href="{{ url_for('.edit_profile', username=user.username) }}">Edit</a> 
+                        {% endif %}
+                        
+                        {% if current_user.is_administrator()  %}
+                        <a class='btn btn-danger' href="{{ url_for('.edit_profile_admin', id=user.id) }}">Edit</a> 
+                        {% endif %}
+                    </h3>
+                            {% if user.about %}
+                            <p class="user-info-p">{{ user.about }}</p>
+                            {% else %}
+                            <p class="user-info-p">Edit your profile to add some information about yourself!</p>
+                            {% endif %}
+                </div>
+                
+                <div class='personal-info last-div'>
+                    <h3 ><span class='info-header'>Climbing Info</span>
+                    
+                    {% if user == current_user %}
+                    <a class='btn btn-primary' href="{{ url_for('.edit_climbing', username=user.username) }}">Edit</a>
+                    {% endif %}
+                    
+                    {% if current_user.is_administrator()  %}
+                    <a class='btn btn-danger' href="{{ url_for('.edit_profile_admin', id=user.id) }}">Edit</a> 
+                    {% endif %}
+                    </h3>
+                    <div class="row">
+                        <div class="col-sm">
+                            <p class="user-info-p"><b class="user-info-b" >Home Gym: </b>{{user.climbing_gym }}</p>
+                            <p class="user-info-p"><b class="user-info-b" >Preferred Style of Climbing: </b>{{ user.climbing_preference }}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </div>
 </div>
