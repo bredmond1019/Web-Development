@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Climbr - Partners
+{% endblock title %}
+
+
+
+{% block content %}
+
+<div class="image-header" 
+style="background-image: url({{ url_for('static', filename='img/yosemite.jpg') }})">
+    <h4 class='partner-find-header'>Current Partners</h4>
+    <p class="header-info-p">Browse through all the partners we have!</p>
+</div>
+
+<div class="partners-container">
+    <ul class="partners">
+        <div class="card-deck">
+        {% for user in users %}
+        <li>
+            <div class="partner-find-container">
+                <div class="row">
+                    
+                    <div class="col-md-auto">
+                        <div class="card mb-3 partner-card">
+                            <div class="row no-gutters">
+                                <div class="col-md-4 partner-pic">
+                                    {% if user.photo_url %}
+                                    <img id="icon2" class="card-img-left" src="{{ url_for('static', filename=user.photo_url) }}">
+                                    {% else %}
+                                    <img id='icon2' class="card-img-left" src="{{ user.gravatar() }}" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="partner-info-container card-body col-md-8">
+                                    <h3 class="card-title">{{ user.first_name}} {{ user.last_name }}</h3>
+                                    <p class="card-text partner-info-p">Climbs at: {{ user.climbing_gym }}</p>
+                                    <p class="card-text partner-info-p">Prefered Style of Climbing: {{ user.climbing_preference }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-auto partner-info">
+                        
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            
+        </li>
+        {% endfor %}
+        </div>
+    </ul>
+</div>
+    
+{% endblock content %}
+
+    

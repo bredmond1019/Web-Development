@@ -289,6 +289,8 @@
 
 .image-header {
     width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 ul.posts {
@@ -296,10 +298,30 @@ ul.posts {
 }
 
 .make-post-container {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-weight: 600; 
+    font-size: 2vw;
     padding-top: 5%;
     padding-left: 5%;
     padding-right: 25%;
     padding-bottom: 10%;
+}
+
+.posts-container {
+    padding-top: 5%;
+    background-color: white;
+    height: 100vh;
+}
+
+.posts-title {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 1.25vw;
+    font-weight: 500;
+    color: black;
+    padding-bottom: 5%;
 }
 
 .post-container {
@@ -308,6 +330,7 @@ ul.posts {
     border-color: black;
     border-style: solid;
     border-width: 2px;
+    margin-bottom: 15px;
 }
 
 #icon {
@@ -322,7 +345,81 @@ ul.posts {
     padding-bottom: 10%;
 }
 
+.post-pic-column {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+}
+
 .post-info-container {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 1.25vw;
+    font-weight: 500;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+}
+
+.post-body-container {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 1.5vw;
+    font-weight: 500;
+    color: black;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+
+
+
+
+
+
+
+/* Partner Page */
+
+ul.partners {
+    list-style-type: none;
+}
+
+#icon2 {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.partner-find-container {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    padding-bottom: 2.5%;
 
 }
 
+.partner-info-p {
+    font-size: 1.25vw;
+}
+
+.partner-find-header {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    padding-bottom: 10%;
+    padding-top: 10%;
+}
+
+.header-info-p {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    padding-bottom: 10%;
+    padding-top: 10%;
+}
+
+.partner-card {
+    max-width: 540px;
+    padding-right: 10%;
+}

@@ -7,12 +7,13 @@ from sqlalchemy.exc import SQLAlchemyError
 import hashlib
 import time
 import os
+from datetime import datetime, timezone
 
 from Climbr import photos
 from . import main
 from .. import db
 from ..models import User, Role, Post, Permission
-from .forms import EditProfileForm, EditClimbingForm, EditProfileAdminForm, ProfilePicForm, PostForm
+from .forms import EditProfileForm, EditClimbingForm, EditProfileAdminForm, ProfilePicForm
 from ..decorators import admin_required
 
 
@@ -39,7 +40,7 @@ def user(username):
         photo_url = user.photo_url
     else:
         photo_url = ''
-    return render_template('user.html', user=user, photo_url=photo_url)
+    return render_template('user/user.html', user=user, photo_url=photo_url)
 
 
 @main.route('/user/<username>/upload-photo', methods=['GET', 'POST'])
@@ -64,7 +65,7 @@ def upload_photo(username):
         finally:
             db.session.close
             return  redirect(url_for('main.user', username=current_user.username))
-    return render_template('upload_photo.html', form=form)
+    return render_template('user/upload_photo.html', form=form)
 
 
 
@@ -90,7 +91,7 @@ def edit_profile(username):
         finally:
             db.session.close()
             return redirect(url_for('main.user', username=current_user.username))
-    return render_template('edit_profile.html', form=form)
+    return render_template('user/edit_profile.html', form=form)
 
 
 @main.route('/user/<username>/edit-climbing', methods=['GET', 'POST'])
@@ -113,7 +114,7 @@ def edit_climbing(username):
         finally:
             db.session.close()
             return redirect(url_for('main.user', username=current_user.username))
-    return render_template('edit_climbing.html', form=form)
+    return render_template('user/edit_climbing.html', form=form)
 
 
 @main.route('/edit-profile/<int:id>', methods = ['GET', 'POST'])
@@ -143,7 +144,23 @@ def edit_profile_admin(id):
         finally:
             db.session.close()
         return redirect(url_for('main.user', username=user.username))
-    return render_template('edit_profile_admin.html', form=form, user=user)
+    return render_template('user/edit_profile_admin.html', form=form, user=user)
+
+
+
+
+
+
+'''
+Find Partner
+'''
+
+
+
+
+
+
+
 
 
 
@@ -154,24 +171,25 @@ def edit_profile_admin(id):
 '''
 Forum
 '''
-@main.route('/forum', methods = ['GET', 'POST'])
-@login_required
-def forum():
-    form = PostForm()
-    if current_user.can(Permission.WRITE) and form.validate_on_submit():
-        try:
-            post = Post(body=form.body.data,
-                        author=current_user._get_current_object())
-            db.session.add(post)
-            db.session.commit()
-            flash("Your post was successfully added!")
-        except SQLAlchemyError as e:
-            print(e)
-            flash("There was an error while attempting to post. Please try again later")
-            db.session.rollback()
-        finally:
-            db.session.close()
-        return redirect(url_for('main.forum'))
-    posts = Post.query.order_by(Post.timestamp.desc()).all()
+# @main.route('/forum', methods = ['GET', 'POST'])
+# @login_required
+# def forum():
+#     form = PostForm()
+#     if current_user.can(Permission.WRITE) and form.validate_on_submit():
+#         try:
+#             post = Post(body=form.body.data,
+#                         author=current_user._get_current_object(),
+#                         timestamp = datetime.now(tz = timezone.utc))
+#             db.session.add(post)
+#             db.session.commit()
+#             flash("Your post was successfully added!")
+#         except SQLAlchemyError as e:
+#             print(e)
+#             flash("There was an error while attempting to post. Please try again later")
+#             db.session.rollback()
+#         finally:
+#             db.session.close()
+#         return redirect(url_for('main.forum'))
+#     posts = Post.query.order_by(Post.timestamp.desc()).all()
     
-    return render_template('forum.html', form=form, posts=posts)
+#     return render_template('forum/forum.html', form=form, posts=posts)
