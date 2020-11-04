@@ -15,5 +15,11 @@ from ..decorators import admin_required
 @partner.route('/', methods = ['GET', 'POST'])
 @login_required
 def index():
-    users = User.query.all()
-    return render_template('partner/partner.html', users=users)
+    page = request.args.get('page', 1, type=int)
+    pagination = User.query.order_by(User.last_seen.desc()).paginate(
+        page, per_page=current_app.config['CLIMBR_POSTS_PER_PAGE'], error_out=False
+    )
+    users = pagination.items
+    return render_template('partner/partner.html', users=users, pagination=pagination)
+
+    

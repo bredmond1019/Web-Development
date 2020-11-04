@@ -372,6 +372,16 @@ ul.posts {
     padding-bottom: 1vh;
 }
 
+div.pagination {
+    width: 100%;
+    text-align: right;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
 
 
 

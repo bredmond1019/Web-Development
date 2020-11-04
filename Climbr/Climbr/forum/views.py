@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, Response, flash, redirect, ur
 from flask_login import login_required, current_user
 from sqlalchemy.exc import SQLAlchemyError
 
+
 import hashlib
 import time
 import os
@@ -37,6 +38,11 @@ def index():
         finally:
             db.session.close()
         return redirect(url_for('main.forum'))
-    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    post_query = Post.query.order_by(Post.timestamp.desc())
+    # posts = post_query.all()
+    page = request.args.get('page', 1, type=int)
+    pagination = post_query.paginate(
+        page, per_page=current_app.config['CLIMBR_POSTS_PER_PAGE'], error_out=False)
+    posts = pagination.items
     
-    return render_template('forum/forum.html', form=form, posts=posts)
+    return render_template('forum/forum.html', form=form, posts=posts, pagination=pagination)

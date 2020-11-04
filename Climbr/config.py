@@ -15,6 +15,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     RECAPTCHA_PRIVATE_KEY = os.environ.get('RC_SECRET_KEY')
     UPLOADED_PHOTOS_DEST = os.path.join(basedir, 'Climbr/static/uploads')
+    CLIMBR_POSTS_PER_PAGE = 10
 
     @staticmethod
     def init_app(app):
