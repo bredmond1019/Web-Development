@@ -1,4 +1,10 @@
 
+/* html {
+    margin-bottom: 0;
+    padding-bottom: 0;
+} */
+
+
 
 /* NavBar */
 
@@ -16,6 +22,9 @@
         font-size: 2vw
     }
 
+    .nav-bottom {
+        margin-bottom: 0;
+    }
 
 
 
@@ -381,6 +390,12 @@ div.pagination {
     align-self: center;
     justify-content: center;
 }
+
+
+.post-edit-container {
+    
+}
+
 
 
 

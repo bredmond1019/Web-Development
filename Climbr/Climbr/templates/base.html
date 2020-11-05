@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Climbr</title>
 
     <!-- Bootstrap -->
@@ -14,14 +14,25 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fira+Sans+Condensed:wght@600&family=Teko:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:,">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="shortcut icon" href="#">
 
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
+    
     {{ moment.include_jquery() }}
     {{ moment.include_moment() }}
+
+
 
 </head>
 <body>
 
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
   
     
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;" >
@@ -69,11 +80,23 @@
         {% endblock flash_messages %}
           
 
-        
+        <!-- Dynamic Modal -->
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="FormModal" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+              
+              {% block modal %}
+                
+              {% endblock modal %}
+                
+              </div>
+          </div>
+        </div>
+        <!-- End Dynamic Modal -->
         
           
 
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-bottom" style="background-color: black;">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-bottom nav-bottom" style="background-color: black;">
           <a class="navbar-brand text-primary" href="#">CLIMBR</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -91,13 +114,58 @@
 
 
 
+        <script>
+          $(document).ready(function () {
+            $('.edit-modal-opener').click(function () {
+                var url = $(this).data('whatever');
+                console.log(url)
+                $.get(url, function (data) {
+                    $('#Modal .modal-content').html(data);
+                    $('#Modal').modal();
+                    $('#submit').click(function (event) {
+                        event.preventDefault();
+                        console.log(url)
+
+                    });
+                })
+            });
+        });
+
+        $(document).ready(function () {
+            $('.delete-modal-opener').click(function () {
+                var url = $(this).data('whatever');
+                console.log(url)
+                $.get(url, function (data) {
+                    $('#Modal .modal-content').html(data);
+                    $('#Modal').modal();
+                    const deleteBtn = document.getElementById('delete-post');
+                    deleteBtn.onclick = function(e) {
+                      const postId = $(this).data("id");
+                      fetch(url, {
+                          method: 'DELETE',
+                      })
+                      .then(res => res.text())
+                      .then(res => console.log(res))
+                      $(function () {
+                        $('#Modal').modal('toggle');
+                      });
+                      location.reload();
+                }
+            })
+        });
+        });
+        </script>
 
 
-
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

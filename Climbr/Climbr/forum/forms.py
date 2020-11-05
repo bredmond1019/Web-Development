@@ -23,3 +23,8 @@ from ..models import User, Role
 class PostForm(FlaskForm):
     body = TextAreaField("What's on your mind?", validators=[DataRequired()])
     submit = SubmitField("Submit")
+
+class EditPostForm(FlaskForm):
+    body = TextAreaField("",validators=[DataRequired()])
+    submit = SubmitField("Confirm Changes")
+

@@ -36,8 +36,37 @@
                         {{ post.body }}
                     </div>
                 </div>
+
+                <div class="col-sm-auto post-pic-column">
+                    <div class="post-edit-container">
+                        {% if current_user == post.author %}
+                        <a class="edit-modal-opener" data-toggle="modal"
+                                            data-whatever="{{ url_for('forum.edit', id=post.id) }}" 
+                                            href="#"><span class="btn btn-primary">Edit</span></a>
+                        <a class="delete-modal-opener" data-toggle='modal' 
+                                    data-whatever="{{ url_for('forum.delete', id=post.id) }}" 
+                                    href="#"><span class="btn btn-danger">Delete</span></a>
+                        {% elif current_user.is_administrator() %}
+                        <a class="edit-modal-opener" data-toggle="modal" data-id="{{ post.id }}"
+                                            data-whatever="{{ url_for('forum.edit', id=post.id) }}" 
+                                            href="#"><span class="btn btn-primary">Edit [Admin]</span></a>
+                        <a class="delete-modal-opener" data-toggle='modal' 
+                                            data-whatever="{{ url_for('forum.delete', id=post.id) }}" 
+                                            href="#"><span class="btn btn-danger">Delete [Admin]</span></a>
+                        {% endif %}
+                    </div>
+                </div>
+  
             </div>
+
+            
+            <!-- <div class="row"> -->
+                
+            <!-- </div> -->
+
         </div>
     </li>
     {% endfor %}
 </ul>
+
+
