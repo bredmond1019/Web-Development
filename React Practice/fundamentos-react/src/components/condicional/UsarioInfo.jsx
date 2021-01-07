@@ -6,7 +6,10 @@ const UsarioInfo = (props) => {
   return (
     <div>
       <If test={user && user.name}>
-        Seja bem vindo, {user.name}!<Else>Seja bem vindo Amigao</Else>
+        Seja bem vindo, <span>{user.name}</span>!
+        <Else>
+          Seja bem vindo <span>Amigao!</span>
+        </Else>
       </If>
     </div>
   );

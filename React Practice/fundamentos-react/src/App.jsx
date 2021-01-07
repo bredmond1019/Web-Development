@@ -18,7 +18,7 @@ const App = (props) => {
       <div className="Cards">
         <Card titulo="06 - Renderizacao Condicional" color="#982395">
           <EvenOrOdd num={20}></EvenOrOdd>
-          <UsarioInfo user={{}}></UsarioInfo>
+          <UsarioInfo user={{ nome: "Brandon" }}></UsarioInfo>
           {/* <UsarioInfo user={{ email: "bredmond1019@gmail.com" }}></UsarioInfo>
           <UsarioInfo></UsarioInfo> */}
         </Card>
