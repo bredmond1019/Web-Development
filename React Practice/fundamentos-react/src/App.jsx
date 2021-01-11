@@ -1,6 +1,9 @@
 import "./App.css";
 import React from "react";
 
+import Input from "./components/formulario/Input";
+import IndiretaPai from "./components/comunicacao/IndiretaPai";
+import DiretaPai from "./components/comunicacao/DiretaPai";
 import UsarioInfo from "./components/condicional/UsarioInfo";
 import EvenOrOdd from "./components/condicional/EvenOrOdd";
 import TabelaProdutos from "./components/repeticao/TabelaProdutos";
@@ -16,6 +19,18 @@ const App = (props) => {
       <h1>Fundamentos React</h1>
 
       <div className="Cards">
+        <Card titulo="09 - Componente Controlado (Input)" color="#E45F56">
+          <Input></Input>
+        </Card>
+
+        <Card titulo="08 - Comunicacao Indireta" color="#59323C">
+          <IndiretaPai></IndiretaPai>
+        </Card>
+
+        <Card titulo="07 - Comunicacao Direta" color="#59323C">
+          <DiretaPai></DiretaPai>
+        </Card>
+
         <Card titulo="06 - Renderizacao Condicional" color="#982395">
           <EvenOrOdd num={20}></EvenOrOdd>
           <UsarioInfo user={{ nome: "Brandon" }}></UsarioInfo>
