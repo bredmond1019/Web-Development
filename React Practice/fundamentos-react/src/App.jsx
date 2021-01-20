@@ -1,6 +1,8 @@
 import "./App.css";
 import React from "react";
 
+import MegaSena from "./components/Mega/Mega";
+import Contador from "./components/contador/Contador";
 import Input from "./components/formulario/Input";
 import IndiretaPai from "./components/comunicacao/IndiretaPai";
 import DiretaPai from "./components/comunicacao/DiretaPai";
@@ -19,6 +21,14 @@ const App = (props) => {
       <h1>Fundamentos React</h1>
 
       <div className="Cards">
+        <Card titulo="11 - MegaSena" color="#B9006E">
+          <MegaSena qtde={6} />
+        </Card>
+
+        <Card titulo="10 - Contador" color="#424242">
+          <Contador numeroInicial={10}></Contador>
+        </Card>
+
         <Card titulo="09 - Componente Controlado (Input)" color="#E45F56">
           <Input></Input>
         </Card>
