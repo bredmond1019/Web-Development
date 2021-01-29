@@ -29,4 +29,5 @@
 
 .Menu li a:hover {
   background: #00000030;
+  /* The 30 at the end is for transparency */
 }
