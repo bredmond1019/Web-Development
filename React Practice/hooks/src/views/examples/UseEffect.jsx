@@ -9,15 +9,31 @@ function calcFactorial(num) {
   return calcFactorial(n - 1) * n;
 }
 
+function calcParity(num) {
+  const n = parseInt(num);
+  if (n % 2 === 0) return "Even";
+  return "Odd";
+}
+
 const UseEffect = (props) => {
   const [number, setNumber] = useState(1);
   const [factorial, setFactorial] = useState(1);
+
+  const [parityNumber, setParityNumber] = useState(1);
+  const [parity, setParity] = useState("Odd");
 
   useEffect(
     function () {
       setFactorial(calcFactorial(number));
     },
     [number]
+  );
+
+  useEffect(
+    function () {
+      setParity(calcParity(parityNumber));
+    },
+    [parityNumber]
   );
 
   return (
@@ -42,7 +58,18 @@ const UseEffect = (props) => {
       </div>
 
       <SectionTitle title="Exercicio #02" />
-      <div className="center"></div>
+      <div className="center">
+        <div>
+          <span className="text">Stato: </span>
+          <span className="text red">{parity}</span>
+        </div>
+        <input
+          type="number"
+          className="input"
+          value={parityNumber}
+          onChange={(e) => setParityNumber(+e.target.value)}
+        />
+      </div>
     </div>
   );
 };
