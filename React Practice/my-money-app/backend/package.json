@@ -15,10 +15,11 @@
     "express": "^4.17.1",
     "express-query-int": "^1.0.1",
     "lodash": "^4.17.21",
+    "mongodb": "^3.6.3",
     "mongoose": "^5.11.17",
     "mongoose-paginate": "^5.0.3",
     "node-restful": "^0.2.5",
-    "pm2": "^4.5.4"
+    "pm2": "^4.5.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
