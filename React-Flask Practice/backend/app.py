@@ -2,8 +2,10 @@ from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 import datetime
 from flask_marshmallow import Marshmallow #Serializes the Data
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bredmond1019:flask@localhost:5432/ReactFlaskProj'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -53,11 +55,27 @@ def add_article():
     db.session.commit()
     return article_schema.jsonify(article)
 
+@app.route('/update/<id>/', methods = ['PUT'])
+def update_article(id):
+    article = Articles.query.get(id)
+
+    title = request.json['title']
+    body = request.json['body']
+
+    article.title = title
+    article.body = body
+
+    db.session.commit()
+    return article_schema.jsonify(article)
 
 
+@app.route('/delete/<id>/', methods = ['DELETE'])
+def delete_article(id):
+    article = Articles.query.get(id)
+    db.session.delete(article)
+    db.session.commit()
 
-
-
+    return article_schema.jsonify(article)
 
 
 if __name__ == "__main__":
