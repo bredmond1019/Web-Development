@@ -1,8 +1,11 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import ArticleList from "./components/ArticleList";
+import Form from "./components/Form";
 
 function App() {
 	const [articles, setArticles] = useState([]);
+	const [editedArticle, setEditedArticle] = useState(null);
 
 	useEffect(() => {
 		fetch("http://127.0.0.1:5000/get", {
@@ -16,20 +19,29 @@ function App() {
 			.catch((error) => console.log(error));
 	}, []);
 
+	const editArticle = (article) => {
+		setEditedArticle(article);
+	};
+
+	const updatedData = (article) => {
+		const new_article = articles.map((my_article) => {
+			if (my_article.id === article.id) {
+				return article;
+			} else {
+				return my_article;
+			}
+		});
+		setArticles(new_article);
+	};
+
 	return (
 		<div className="App">
 			<h1 className="title">Flask and React Project</h1>
 
-			{articles.map((article) => {
-				return (
-					<div key={article.id}>
-						<h2>{article.title}</h2>
-						<p>{article.body}</p>
-						<p>{article.date}</p>
-						<hr></hr>
-					</div>
-				);
-			})}
+			<ArticleList articles={articles} editArticle={editArticle} />
+			{editedArticle ? (
+				<Form article={editedArticle} updatedData={updatedData} />
+			) : null}
 		</div>
 	);
 }
