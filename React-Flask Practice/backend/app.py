@@ -2,12 +2,13 @@ from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 import datetime
 from flask_marshmallow import Marshmallow #Serializes the Data
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bredmond1019:flask@localhost:5432/ReactFlaskProj'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bredmond1019:flask@localhost:5432/ReactFlaskProj'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://brandon:flask@localhost:5432/reactflaskproj'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -46,6 +47,7 @@ def post_details(id):
 
 
 @app.route('/add', methods = ['POST'])
+@cross_origin(headers=['Content-Type', 'access-control-allow-origin'])
 def add_article():
     title = request.json['title']
     body = request.json['body']
