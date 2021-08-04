@@ -2,7 +2,6 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import ArticleList from "./components/ArticleList";
 import Form from "./components/Form";
-import APIService from "./components/APIService";
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -25,13 +24,16 @@ function App() {
   };
 
   const deleteArticle = (article) => {
-    APIService.DeleteArticle(article.id)
-      .then((resp) => console.log(resp))
-      .catch((error) => console.log(error));
+    const new_articles = articles.filter((myarticle) => {
+      if (myarticle.id === article.id) {
+        return false;
+      }
+      return true;
+    });
+    setArticles(new_articles);
   };
 
   const updatedData = (article) => {
-    console.log("I'm in updatedData APP: ", article);
     const new_article = articles.map((my_article) => {
       if (my_article.id === article.id) {
         return article;
