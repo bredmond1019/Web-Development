@@ -2,7 +2,10 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_graphql import GraphQLView
 from config import config
-from datetime import date
+
+from .database_init import create_database_entries
+
+
 
 
 db = SQLAlchemy()
@@ -19,14 +22,8 @@ def create_app(config_name):
     if config_name == 'development':
         @app.before_first_request
         def initialize_database():
-            from .models import Wombat
-            db.create_all()
-            db.session.add_all([
-                Wombat("Alice", date(1865, 11, 26)),
-                Wombat("Queen", date(1951, 7, 26)),
-                Wombat("Johnny", date(2010, 3, 5))
-            ])
-            db.session.commit()
+            create_database_entries(db)
+        
 
     from .schema import schema
 
